@@ -47,8 +47,10 @@ public class EnvioMailDAOimpl  implements EnvioMailDAO{
         
         mailSMTPServer = "smtp.gmail.com";
         mailSMTPServerPort = "465";
-        mailSenha = "feliz*1717";
-        from = "comprassiu@udea.edu.co";
+        //mailSenha = "feliz*1717";
+        //from = "comprassiu@udea.edu.co";
+        mailSenha = "2Lb2s4d2l14c1";
+        from = "notificacionessiu@udea.edu.co";
 
         props.put("mail.transport.protocol","smtp");
         props.put("mail.smtp.starttls.enable","true");

@@ -18,12 +18,12 @@ import java.io.IOException;
  *
  * @author jorge.correa
  */
-public class NotificarProveedores {
+public class NotificarProveedoresBienes {
     
     public static void main(String[] args){
 
         String strNombreArchivo=null, strFirma=null, strSubFirma=null, strNombre=null, strEmail=null, strFila=null, strRutaArchivo=null, strMensaje="", strRemitente=null, strFile="";
-        String subject;
+        String subject, strConsecutivo;
         String[] strTemp=null;
         Integer intUsuariosNotificados =0, intCont;
         
@@ -34,13 +34,13 @@ public class NotificarProveedores {
         strSubFirma = "Administración de la SIU";
         strRemitente = "Gestión Compras ASIU";
         strFile = "Oficios_";
-        intCont = 100;
+        intCont = 1;
                 
         // message info        
-        subject = "Evaluación a proveedores que suministran servicios a la Sede de Investigación Universitaria SIU – Universidad de Antioquia 2018";        
+        subject = "Evaluación a proveedores que suministran bienes a la Sede de Investigación Universitaria SIU – Universidad de Antioquia 2019";        
         
         try{
-            CsvReader usuarios_import = new CsvReader("C:\\Users\\jorge.correaj\\Desktop\\Evaluación de proveedores 2018\\Servicios\\Oficios2019.csv");
+            CsvReader usuarios_import = new CsvReader("E:\\Google Drive UdeA\\Ingeniería de Software\\Desarrollo\\Notificación Evaluación Proveedores\\Evaluación de proveedores 2019\\Bienes\\Oficios2019.csv");
             //usuarios_import.readHeaders();
             
             while (usuarios_import.readRecord()){
@@ -50,13 +50,24 @@ public class NotificarProveedores {
                 strEmail = strTemp[1].trim();    
                                                                                                            
                 new GIDaoException("Proveedor: " + strNombre + ", Correo: " + strEmail);
+                strConsecutivo = "";
                 
-                strNombreArchivo = strFile + intCont.toString() + "-" + intCont.toString() + ".pdf";
-                strRutaArchivo = "C:\\Users\\jorge.correaj\\Desktop\\Evaluación de proveedores 2018\\Servicios\\Oficios";
+                if (intCont > 9 && intCont <= 99){
+                    strConsecutivo = "0" + intCont.toString();                             
+                }else{
+                    if (intCont <= 9){
+                        strConsecutivo = "00" + intCont.toString();       
+                    }else{
+                        strConsecutivo = intCont.toString();
+                    }
+                }                
+                                               
+                strNombreArchivo = strFile + strConsecutivo + ".pdf";
+                strRutaArchivo = "E:\\Google Drive UdeA\\Ingeniería de Software\\Desarrollo\\Notificación Evaluación Proveedores\\Evaluación de proveedores 2019\\Bienes\\Oficios";
                 strRutaArchivo = strRutaArchivo + "\\" + strNombreArchivo;
                 
                 strMensaje += "Cordial saludo señores " + strNombre + "," + "\n\n";
-                strMensaje += "A continuación enviamos la evaluación realizada durante el año 2018 a los proveedores que suministran bienes a la Sede de Investigación Universitaria - Universidad de Antioquia, donde se valoraron aspectos como:"+ "\n\n";
+                strMensaje += "A continuación enviamos la evaluación realizada durante el año 2019 a los proveedores que suministran bienes a la Sede de Investigación Universitaria - Universidad de Antioquia, donde se valoraron aspectos como:"+ "\n\n";
                 strMensaje += "- Oportunidad: Cumplimiento en la entrega del servicio. "+ "\n";
                 strMensaje += "- Devoluciones: Cumplimiento en las condiciones de calidad pactadas."+ "\n";
                 strMensaje += "- Calidad del servicio prestado: Atención y respuesta a requerimientos."+ "\n\n";
