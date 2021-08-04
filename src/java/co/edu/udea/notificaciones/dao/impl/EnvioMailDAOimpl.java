@@ -45,23 +45,27 @@ public class EnvioMailDAOimpl  implements EnvioMailDAO{
     public EnvioMailDAOimpl(){
         this.props = new Properties();                    
         
-        mailSMTPServer = "smtp.gmail.com";
-        mailSMTPServerPort = "465";
+        mailSMTPServer = "172.19.0.101";
+        mailSMTPServerPort = "25";
         //mailSenha = "feliz*1717";
         //from = "comprassiu@udea.edu.co";
         mailSenha = "2Lb2s4d2l14c1";
         from = "notificacionessiu@udea.edu.co";
 
+        // Se inhabilitan algunas configuraciones ya que se debe realizar relay a través del servidor SMTP de la universidad y no directamente a Gmail.
+                                              
         props.put("mail.transport.protocol","smtp");
-        props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.starttls.enable","false");
+        //props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host",mailSMTPServer);        
-        props.put("mail.smtp.auth","true");
-        props.put("mail.smtp.user",from);
+        props.put("mail.smtp.auth","false");
+        //props.put("mail.smtp.auth","true");
+        //props.put("mail.smtp.user",from);
         props.put("mail.smtp.debug","true");       
         props.put("mail.smtp.port",mailSMTPServerPort);                       
-        props.put("mail.smtp.socketFactory.port",mailSMTPServerPort);            
-        props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback","false");
+        //props.put("mail.smtp.socketFactory.port",mailSMTPServerPort);            
+        //props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+        //props.put("mail.smtp.socketFactory.fallback","false");
         
         SimpleAuth auth = new SimpleAuth(from,mailSenha);           
        session = Session.getDefaultInstance(props,auth);
