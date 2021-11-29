@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Configuración de las notificaciones</h1>
+        <h1> Página de configuración de las notificaciones</h1>
     </body>
 </html>
